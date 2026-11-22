@@ -1,4 +1,4 @@
-const V='eltiam-v4',PRE=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
+const V='eltiam-v5',PRE=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./fonts/vazirmatn-400.woff2'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(PRE)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{if(e.request.method!=='GET'||!e.request.url.startsWith('http'))return;
